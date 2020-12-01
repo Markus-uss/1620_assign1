@@ -70,7 +70,6 @@ function lightTheme() {
 }
 
 function cancel() {
-    document.getElementsByTagName('textarea')[0].value = ''
     button = document.getElementsByClassName('button');
     for (element of button) {
         if ((element.innerText).includes('Save') || (element.innerText).includes('Cancel') == true) {
@@ -81,3 +80,25 @@ function cancel() {
     document.getElementsByTagName('textarea')[0].classList.toggle('hidden');
     document.getElementsByTagName('textarea')[0].disabled = true;
 }
+
+function newNote() {
+    textArea = document.getElementsByTagName('textarea')[0]
+    buttons = document.getElementsByClassName('button')
+    if (textArea.disabled == true) {
+        textArea.classList.toggle('hidden');
+        textArea.disabled = false;
+        for (element of buttons) {
+            if ((element.innerText).includes('Save') || (element.innerText).includes('Cancel') == true) {
+                element.classList.toggle('hidden');
+                element.disabled = false;
+            }
+        }
+
+    } else {
+        textArea.value = ''
+    }
+}
+
+// - If the textarea, save and cancel buttons are hidden, pressing 
+// "New Note" button would make them visible. After that pressing “New Note” again 
+// should clear the text area.
