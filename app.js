@@ -58,6 +58,7 @@ function lightTheme() {
             element.innerText = 'Dark Theme'
         }
     }
+
     document.getElementsByClassName('header')[0].style.backgroundColor = '#613d72';
     document.getElementsByClassName('header')[0].style.color = '#191d1d';
 
@@ -107,25 +108,37 @@ function newNote() {
 
 
 function saveNote() {
+    list = document.getElementsByTagName('ul')[0]
     textArea = document.getElementsByTagName('textarea')[0].value.split('\n')
-
     noteTitle = textArea.shift()
     noteContent = textArea.join('\n')
+
+    let noteExist = false;
+
+    for (note of savedNotes) {
+        if (noteTitle == note.title) {
+            noteExist = true;
+        }
+    }
+
+    if (noteExist == false) {
+        let newList = document.createElement('li');
+        let newText = document.createTextNode(noteTitle);
+        newList.appendChild(newText)
+        list.appendChild(newList);
+    }
+
     savedNotes.push ({
         title: noteTitle,
         body: noteContent
     })
 
-    list = document.getElementsByTagName('ul')[0]
-
-    let newList = document.createElement('li');
-    let newText = document.createTextNode(noteTitle);
-    newList.appendChild(newText)
-    list.appendChild(newList);
+    console.log(savedNotes)
 
     for (note of (list.children)) {
         if (note.onclick == null) {
-            note.onclick = function() {loadNote(noteTitle)};
+            let newTitle = noteTitle
+            note.onclick = function() {loadNote(newTitle)};
         }
     }
 }
