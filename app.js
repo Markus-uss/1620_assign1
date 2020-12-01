@@ -4,6 +4,7 @@ savedNotes = [
     {title: 'note two', body: 'some text 2'}
 ]
 
+
 function themeChange(currentMode) {
     if (currentMode == 'lightMode') {
         darkTheme()
@@ -15,6 +16,7 @@ function themeChange(currentMode) {
         return currentMode;
     }
 }
+
 
 function darkTheme() {
     button = document.getElementsByClassName('button');
@@ -71,6 +73,7 @@ function lightTheme() {
     document.getElementsByTagName('textarea')[0].style.backgroundColor = 'white'
 }
 
+
 function cancel() {
     button = document.getElementsByClassName('button');
     for (element of button) {
@@ -82,6 +85,7 @@ function cancel() {
     document.getElementsByTagName('textarea')[0].classList.toggle('hidden');
     document.getElementsByTagName('textarea')[0].disabled = true;
 }
+
 
 function newNote() {
     textArea = document.getElementsByTagName('textarea')[0]
@@ -101,6 +105,7 @@ function newNote() {
     }
 }
 
+
 function saveNote() {
     textArea = document.getElementsByTagName('textarea')[0].value.split('\n')
 
@@ -110,9 +115,29 @@ function saveNote() {
         title: noteTitle,
         body: noteContent
     })
-    
+
+    list = document.getElementsByTagName('ul')[0]
+
     let newList = document.createElement('li');
     let newText = document.createTextNode(noteTitle);
     newList.appendChild(newText)
-    document.getElementsByTagName('ul')[0].appendChild(newList);
+    list.appendChild(newList);
+
+    for (note of (list.children)) {
+        if (note.onclick == null) {
+            note.onclick = function() {loadNote(noteTitle)};
+        }
+    }
+}
+
+
+function loadNote(noteTitle) {
+    list = document.getElementsByTagName('ul')[0].children
+    for (note of savedNotes) {
+        if (note.title == noteTitle) {
+            savedTitle = String(note.title) + '\n';
+            savedContent = note.body;
+        }
+    }
+    document.getElementsByTagName('textarea')[0].value = savedTitle + savedContent
 }
