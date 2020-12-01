@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="header"><i>Take Better Notes</i></div>
-        <div class="menu">My Notes
+        <div class="menu" style="overflow-y: auto; overflow-x: hidden;">My Notes
             <ul>
                 <li>note one</li>
                 <li>note two</li>
@@ -23,7 +23,7 @@
                 <textarea class="button" style="background-color: white;grid-column-start: 1;grid-column: 1/7;text-align: start;padding: 20px;resize:none;">This is a placeholder</textarea>
             </div>
             <div class="save_buttons">
-                <button class="button" style="background-color: rgb(57, 126, 61);grid-column: 2/3;">Save</button>
+                <button onclick="saveNote()" class="button" style="background-color: rgb(57, 126, 61);grid-column: 2/3;">Save</button>
                 <button onclick="cancel()" class="button" style="background-color: rgb(223, 68, 48);">Cancel</button>
             </div>
         </div>
