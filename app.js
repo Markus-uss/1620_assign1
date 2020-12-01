@@ -1,4 +1,6 @@
 currentMode = 'lightMode'
+notesArray = [
+]
 
 function themeChange(currentMode) {
     if (currentMode == 'lightMode') {
@@ -65,4 +67,17 @@ function lightTheme() {
     document.getElementsByTagName('body')[0].style.backgroundColor = '#f3eeff';
 
     document.getElementsByTagName('textarea')[0].style.backgroundColor = 'white'
+}
+
+function cancel() {
+    document.getElementsByTagName('textarea')[0].value = ''
+    button = document.getElementsByClassName('button');
+    for (element of button) {
+        if ((element.innerText).includes('Save') || (element.innerText).includes('Cancel') == true) {
+            element.classList.toggle('hidden');
+            element.disabled = true;
+        }
+    }
+    document.getElementsByTagName('textarea')[0].classList.toggle('hidden');
+    document.getElementsByTagName('textarea')[0].disabled = true;
 }
