@@ -119,3 +119,7 @@ html, body {
 li {
     font-size: 0.75em;
 }
+
+.hidden {
+    opacity: 0.5;
+}
