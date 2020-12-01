@@ -133,8 +133,6 @@ function saveNote() {
         body: noteContent
     })
 
-    console.log(savedNotes)
-
     for (note of (list.children)) {
         if (note.onclick == null) {
             let newTitle = noteTitle
