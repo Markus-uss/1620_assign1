@@ -1,5 +1,7 @@
 currentMode = 'lightMode'
-notesArray = [
+savedNotes = [
+    {title: 'note one', body: 'some text 1'},
+    {title: 'note two', body: 'some text 2'}
 ]
 
 function themeChange(currentMode) {
@@ -99,6 +101,18 @@ function newNote() {
     }
 }
 
-// - If the textarea, save and cancel buttons are hidden, pressing 
-// "New Note" button would make them visible. After that pressing “New Note” again 
-// should clear the text area.
+function saveNote() {
+    textArea = document.getElementsByTagName('textarea')[0].value.split('\n')
+
+    noteTitle = textArea.shift()
+    noteContent = textArea.join('\n')
+    savedNotes.push ({
+        title: noteTitle,
+        body: noteContent
+    })
+    
+    let newList = document.createElement('li');
+    let newText = document.createTextNode(noteTitle);
+    newList.appendChild(newText)
+    document.getElementsByTagName('ul')[0].appendChild(newList);
+}
